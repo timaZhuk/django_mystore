@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{%block title%}{%endblock%}|MyStore</title>
+</head>
+<body>
+    <!-- Navigation Bar in My store
+    mx-auto -margins auto
+    py-4 -- padding 4 from up down
+    px-6 ---pading 6 left--right
+    text-2xl -- text size
+    flex - for flex box
+    items-center -- put items in the center of flex-box and navbar
+    justify-between - make a distance between elements
+
+    -->
+    <nav class="max-w-4xl mx-auto py-4 px-6 flex items-center justify-between bg-teal-600">
+        <div class="logo">
+            <a href="/" class="text-2xl text-white">
+                MyStore
+            </a>
+        </div>
+        <!-- Create links for Menu or About -->
+        <div class="menu">
+            <a href="{%url 'about' %}" class="text-white">
+                About
+            </a>
+        </div>
+
+    </nav>
+    <!-- Below variable content -->
+    <div class="max-w-4xl mx-auto">
+
+        {%block content%}
+
+        {%endblock%}
+    </div>
+      
+
+</body>
+</html>
