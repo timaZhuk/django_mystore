@@ -4,18 +4,22 @@ TODO
 -3DONEInit database, super user, test run
 -4DONECreate core app for base pages
 -5DONECreate app for userprofile
--6 Create App for store
-    -create a category model
--List out newest products on the front pages
--Product detail view
-- Category view
-- Simple search
-- Vendor detail pages
-    -make it possible to ligin and logout
-    -Create myaccout pages
+-6DONE Create App for store
+    -DONEcreate a category model
+-7DONEList out newest products on the front pages
+-8DONEProduct detail view
+-9DONECategory view
+-10DONEShow vendor on detail page
+-11DONEAdd images to the products
+- 12DONE Vendor detail pages
+    -DONEmake it possible to ligin and logout  
+    -DONECreate myaccout pages
+-12DONESimple search
+-Admin pages for the vendors (users)
+
 - Add the products to the cart
 - View cart
--Admin pages for the vendors
+
 -Implement payment gateway
 - Checkout
 - Deploy project
