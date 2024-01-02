@@ -1,6 +1,6 @@
-{%for category in categories%}
-    <a href="{%url 'category_detail' category.slug%}" class="text-white">{{category.title}}</a>
+{% for category in categories %}
+    <a href="{%url 'category_detail' category.slug %}" class="p-2 text-white hover:bg-blue-500 rounded-xl">{{category.title}}</a>
 {%endfor%}
-<a href="{%url 'about' %}" class="text-white">
+<a href="{% url 'about' %}" class="p-2 text-white hover:bg-blue-500 rounded-xl">
     About
 </a>

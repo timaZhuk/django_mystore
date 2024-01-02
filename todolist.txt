@@ -5,7 +5,7 @@ TODO
 -4DONECreate core app for base pages
 -5DONECreate app for userprofile
 -6DONE Create App for store
-    -DONEcreate a category model
+    -DONE create a category model
 -7DONEList out newest products on the front pages
 -8DONEProduct detail view
 -9DONECategory view
@@ -15,11 +15,17 @@ TODO
     -DONEmake it possible to ligin and logout  
     -DONECreate myaccout pages
 -12DONESimple search
--Admin pages for the vendors (users)
+-DONE Admin pages for the vendors (users)
 
-- Add the products to the cart
-- View cart
-
+- DONE Add the products to the cart
+- DONE View cart
+- DONE Make it possible to increment/decrement products in the cart 
+- Create a check out page 
+- Separate shoppers from vendors  
+- Check put functionality
+- Vendors must see their orders
+- Vendors must be able to see what they have earned 
+- Only authenticated users can proceed to the checkout
 -Implement payment gateway
 - Checkout
 - Deploy project

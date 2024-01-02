@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{%block title%}
+{{title}}
+{%endblock%}
+
+{% block content  %}
+<h1 class="text-2xl">
+   {{title}}
+</h1>
+
+<form method="post" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="py-4 px-8 bg-blue-600 text-white hover:bg-blue-800">
+        Submit
+    </button>
+</form>
+<!-- Now if we have already added product, we can delete it  -->
+{%if title == 'Edit product'%}
+    <a href="{% url 'delete_product' product.id %}" class="mt-3 inline-block py-4 px-8 bg-red-500 text-white">Delete product</a>
+{% endif %}
+{% endblock %}

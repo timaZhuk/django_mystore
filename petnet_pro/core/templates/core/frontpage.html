@@ -1,9 +1,12 @@
 <!-- frontpage inheriet all styles from base.html -->
 {% extends 'core/base.html' %}
-{%block title%}
+{% block title %}
 FrontPage
-{%endblock%}
-{%block content%}
+{% endblock %}
+
+<!-- Code -->
+
+{% block content %}
 <h1 class="text-3xl font-bold underline">
     Frontpage of my store
   </h1>
@@ -11,7 +14,11 @@ FrontPage
     <!--  -->
   </div>
   <!-- list all items (products) -->
-  <div class="flex flex-wrap">
+  {% include 'store/partials/products.html' %}
+
+{%endblock%}
+
+<!-- <div class="flex flex-wrap">
 
   {% for product in products %}
     <div class="product w-1/3 p-2">
@@ -30,10 +37,9 @@ FrontPage
       </a>
       </div>
 
-      <!--closing div below  -->
+      
     </div>
     
   {% endfor %}
   </div>
-
-{%endblock%}
+ -->

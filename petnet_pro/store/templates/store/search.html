@@ -4,11 +4,22 @@
 Search
 {% endblock %}
 
-{%block content%}
+{% block content %}
 Hello
 <h1 class="text-2xl">Search</h1>
 <h2 class="text-xs text-gray-600">Search results for {{query}}</h2>
+<!-- Products list -->
 {%if products%}
+  {% include 'store/partials/products.html' %}
+{%else%}
+<p>There are no products with these parameters</p>
+{% endif%}
+
+{%endblock%}
+
+
+<!-- 
+
 <div class="flex flex-wrap">
 {% for product in products %}
     <div class="product w-1/3 p-2">
@@ -27,13 +38,11 @@ Hello
       </a>
       </div>
 
-      <!--closing div below  -->
+      
     </div>
     
-  {% endfor %}
-</div>
-{%else%}
-<p>There are no products with these parameters</p>
-{% endif%}
+    {% endfor %}
+  </div>
 
-{%endblock%}
+
+ -->

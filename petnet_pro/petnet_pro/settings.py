@@ -27,7 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# seesion Id for our cart (browser info about user)
+CART_SESSION_ID = 'cart'
+# time how long session will live before deleting
+SESSION_COOKIE_AGE = 86400 # 1 day in seconds
+
+#url for redirecting after LogIN
 LOGIN_REDIRECT_URL = 'myaccount'
+#url for redirecting after LogOUT
 LOGOUT_REDIRECT_URL = 'frontpage'
 
 
