@@ -18,7 +18,7 @@ class Category(models.Model):
         return self.title
     
 
-# -- Create model Products
+# ------ Create model Products-------
 class Product(models.Model):
     DRAFT = 'draft'
     WAITING_APPROVAL = 'waitingapproval'
@@ -79,6 +79,35 @@ class Product(models.Model):
         thumb_io = BytesIO()
         img.save(thumb_io, 'JPEG', quality = 85)
         name = image.name.replace('uploads/product_images/','')
-        thubnail = File(thumb_io,name = name)
+        thumbnail = File(thumb_io,name = name)
 
-        return thubnail
+        return thumbnail
+
+#create model for orders
+#on_delete=models.SET_NULL we don't want delete orders if User was deleted
+#want to know when order was created auto_now_add=True
+class Order(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    zipcode = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    paid_amount = models.IntegerField(blank=True, null = True)
+    is_paid = models.BooleanField(default =False)
+    payment_intent = models.CharField(max_length = 255, null=True)
+    created_by = models.ForeignKey(User,related_name='order',
+                                   on_delete=models.SET_NULL,
+                                   null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+# model for orders list
+class OrderItems(models.Model):
+    order = models.ForeignKey(Order, related_name='items',on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='items',on_delete=models.CASCADE)
+    price = models.IntegerField()
+    quantity = models.IntegerField(default=1)
+
+
+    def get_total_price(self):
+        return self.price/100
+

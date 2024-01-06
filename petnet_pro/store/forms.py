@@ -1,5 +1,12 @@
 from django import forms
-from .models import Product
+from .models import Product, Order
+
+#create form for orders
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('first_name', 'last_name','address', 
+                  'zipcode', 'city', )
 
 # form for our products list with props
 class ProductForm(forms.ModelForm):

@@ -58,7 +58,13 @@ class Cart(object):
             del self.cart[product_id]
 
             self.save()
-    #  ---------------------------------------------------------------
+    #---------claer() function for cart-----------------------
+    
+    def clear(self):
+        del self.session[settings.CART_SESSION_ID]
+        self.session.modified = True
+    
+    #---------------------------------------------------------------
     # -----------------------------------------------------
     def get_total_cost(self):
         for p in self.cart.keys():

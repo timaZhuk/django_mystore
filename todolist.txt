@@ -20,13 +20,21 @@ TODO
 - DONE Add the products to the cart
 - DONE View cart
 - DONE Make it possible to increment/decrement products in the cart 
-- Create a check out page 
-- Separate shoppers from vendors  
-- Check put functionality
-- Vendors must see their orders
-- Vendors must be able to see what they have earned 
-- Only authenticated users can proceed to the checkout
+- DONE Create a check out page 
+- DONE Separate shoppers from vendors 
+- DONE Add cart button in menu 
+- DONE Checkout functionality
+
+- DONE Vendors must see their orders
+- DONE Vendors must be able to see their oders
+- DONE Only authenticated users can proceed to the checkout
 -Implement payment gateway
-- Checkout
+    -DONE get api's keys from stripe
+    -DONE Install stripe and add credentials in settings.payment
+    (pip install stripe)
+    - DONEpass the pub-key into the checkout view
+    - Create Stripe checkout when creating orders
+    - Create success page
+- Done Add requirements file 
 - Deploy project
 -   

@@ -1,8 +1,8 @@
 from django.shortcuts import render
-#import model Products from store app
+#---import model Products from store app
 from store.models import Product
-# Create your views here.
-# Then we have to add this view to main url.py inside petnet_pro
+#--Create your views here.
+#--Then we have to add this view to main url.py inside petnet_pro
 
 
 

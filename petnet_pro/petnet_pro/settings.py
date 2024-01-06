@@ -32,6 +32,9 @@ CART_SESSION_ID = 'cart'
 # time how long session will live before deleting
 SESSION_COOKIE_AGE = 86400 # 1 day in seconds
 
+
+# url for login page
+LOGIN_URL = 'login'
 #url for redirecting after LogIN
 LOGIN_REDIRECT_URL = 'myaccount'
 #url for redirecting after LogOUT
@@ -65,6 +68,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'petnet_pro.urls'
 
+WEBSITE_URL = 'http://127.0.0.1:8001/'
+
+STRIPE_PUB_KEY = 'pk_test_51OVIBGFAdREa2jStGYilyzBo8inNHWsjzQesTl8f0qmS0pWMw6AT1ua48NVkecTx2SckQhgixF95UMpdUDPf3z1t00Vn6j2PVH'
+STRIPE_SECRET_KEY = 'sk_test_51OVIBGFAdREa2jSt9T6K1Aqw4PeN9bl2o08wgjjDvIcxIcy4mS5MigeK480WqVwUWXl4Je6bEvooUW5TkO23OCVk00KPLIUNxA'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -76,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.context_processors.cart',
             ],
         },
     },

@@ -1,21 +1,22 @@
 #for messages for user
+
 from django.contrib import messages
 #for login
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Userprofile
 from django.shortcuts import render, redirect
 from django.utils.text import slugify
 # Create your views here.
 from store.forms import ProductForm 
-from store.models import Product
+from store.models import Product, Order, OrderItems
 #-------------------------------------------------------------
 def vendor_detail(request, pk):
     user = User.objects.get(pk=pk)
-    products = user.products.filter(status=Product.ACTIVE)
+    products = user.products.filter(status = Product.ACTIVE)
     return render(request,'userprofile/vendor_detail.html',
     {
         'user':user,
@@ -27,10 +28,24 @@ def vendor_detail(request, pk):
 def my_store(request):
     # we exclude from my_store all items with status='DELETEED'
     products = request.user.products.exclude(status=Product.DELETED)
+    order_items = OrderItems.objects.filter(product__user = request.user)
+
     return render(request,'userprofile/my_store.html',
     {
-    'products':products
+    'products':products,
+    'order_items':order_items
                   })
+#order-detail function
+@login_required
+def my_store_order_detail(request, pk):
+    order = get_object_or_404(Order,pk=pk)
+
+    return render(request, 'userprofile/my_store_order_detail.html',{
+        'order':order
+    })
+    
+
+
 #----------------Editing-Adding--Deleting----------------------------------------
 @login_required
 def add_product(request):
@@ -48,7 +63,7 @@ def add_product(request):
             product.save()
             # success message
             messages.success(request, 'New product was added')
-            # redirect to my-store to User's account
+            # redirect to my-store from User's account
             return redirect('my_store') # name='my_store' in urls
         else:
             form = ProductForm()
@@ -84,7 +99,7 @@ def edit_product(request, pk):
         'form':form
     })
 
-# instead of deleting we add status 'Delete' in stoore.models
+# instead of deleting we add status 'Delete' in store.models
 # then we change the status by 'delete_product'
 @login_required
 def delete_product(request, pk):
