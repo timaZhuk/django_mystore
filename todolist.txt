@@ -38,3 +38,22 @@ TODO
 - Done Add requirements file 
 - Deploy project
 -   
+
+
+
+
+
+Had a similar problem, long story short it's for security issues, and by design, Django now has for LogoutView to accept POST request instead of GET. Here is the corrected version that worked: <ul class="flex items-center space-x-4">
+                    <li><a href="{% url 'shop' %}">Shop</a> </li>
+                    <li><a href="#">About</a> </li>
+
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-button">Logout</button>
+                        </form>
+                    </li>
+                    {% endif %}
+                </ul>
+

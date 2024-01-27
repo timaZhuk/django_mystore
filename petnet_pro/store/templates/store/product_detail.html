@@ -20,11 +20,11 @@
 <!--  -->
 {%block content%}
 <!--  -->
-Hello
+
 <!--  -->
-{% if product.image %}
-<div class="image">
-  <img src="{{product.image.url}}" alt="{{product.title}}" />
+{% if product.get_thumbnail %}
+<div class="m-2 image">
+  <img src="{{product.get_thumbnail}}" alt="{{product.title}}" />
 </div>
 {% endif%}
 <h1 class="text-2xl">{{product.title}}</h1>

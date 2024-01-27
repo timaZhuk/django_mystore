@@ -1,17 +1,12 @@
 {% extends 'core/base.html'%}
+<!--  -->
+{% block title %} {{category.title}} {% endblock%}
 
-{% block title %}
-{{category.title}}
-{% endblock %}
-
+<!--  -->
 {%block content%}
-Hello
-<h1 class="text-2xl">{{category.title}}</h1>
-{% include 'store/partials/products.html' %}
 
-
-{%endblock%}
-
+<h1 class="m-2 text-2xl items-center">{{category.title}}</h1>
+{% include 'store/partials/products.html' %} {%endblock%}
 
 <!-- 
 

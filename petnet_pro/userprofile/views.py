@@ -14,6 +14,7 @@ from django.utils.text import slugify
 from store.forms import ProductForm 
 from store.models import Product, Order, OrderItems
 #-------------------------------------------------------------
+# -- Vendor detail page ----
 def vendor_detail(request, pk):
     user = User.objects.get(pk=pk)
     products = user.products.filter(status = Product.ACTIVE)
@@ -23,19 +24,60 @@ def vendor_detail(request, pk):
         'products':products
      
      })
+#----------------------------------------------------------------
+def user_deatil(request, pk):
+    user = User.objects.get(pk=pk)
+    return render(request,'userprofile/user_detail.html',
+    {
+        'user':user
+        
+     })
 #---------for User-pages----Main Page of Account-----------------------------------------------
-@login_required # want user was authenticated
+@login_required # require that  user is authenticated
 def my_store(request):
-    # we exclude from my_store all items with status='DELETEED'
+    
+    #-- we exclude from my_store all items with status='DELETEED'
     products = request.user.products.exclude(status=Product.DELETED)
-    order_items = OrderItems.objects.filter(product__user = request.user)
+    orders = Order.objects.all()
+
+    #-------------check----how iterate QuerySet-------------
+    #loop through the items then key, value
+    #--------created_by_id = user.id
+    #for order_i in order_items.values():
+    #    for key, value in order_i.items():
+    #        print(key, value)
+    #-------------------------------
+
+    #save all in list 'order_id' from 'orders' where 'created_by_id == request.user.id'
+    arr=list()
+    
+    for item in orders.values():
+        
+        for key, value in item.items():
+
+            if item[key] == request.user.id:
+                #print(item['id'])
+                arr.append(item['id'])
+                
+                
+    #----------------------print(arr)-------------------
+    #
+    order_items = OrderItems.objects.filter(order__id__in=arr)
+    
+    
+    
+    #order_items = OrderItems.objects.filter(product__user = request.user)
+    
 
     return render(request,'userprofile/my_store.html',
     {
     'products':products,
     'order_items':order_items
                   })
-#order-detail function
+
+
+
+#--------order-detail function
 @login_required
 def my_store_order_detail(request, pk):
     order = get_object_or_404(Order,pk=pk)
@@ -113,22 +155,27 @@ def delete_product(request, pk):
 
 #------------My Account View----------------------------------------@login_required
 def myaccout(request):
-    return render(request, 'userprofile/myaccount.html')
+    
+    
+    return render(request, 'userprofile/myaccount.html',{
+        
+    })
 #------------------------------------------------------------
 
-# craete view for sign up
+#----------SIGN UP-------------------------------
 def signup(request):
-    # if we have POST method (in form)
+    form = UserCreationForm()
+    # ---if we have POST method (in form)
     if request.method == 'POST':
         #create object form
         form = UserCreationForm(request.POST)
         # if all fields in form valid
         if form.is_valid():
-            # we create user data and save
+            #---we create user data and save
             user = form.save()
-            #save user (login)
+            #---save user (login)
             login(request, user)
-            #create userprofile
+            #---create userprofile
             userprofile = Userprofile.objects.create(user = user)
             return redirect('frontpage')
     else:

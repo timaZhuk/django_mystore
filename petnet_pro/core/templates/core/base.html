@@ -21,11 +21,13 @@
 
     -->
     <nav
-      class="max-w-4xl mx-auto py-5 px-7 flex items-center justify-between bg-blue-300"
+      class="max-w-8xl mx-auto py-5 px-7 flex items-center justify-between bg-blue-300"
     >
       <div class="flex items-center logo">
-        <a href="/" class="text-3xl text-white">
-          MyStore
+        <a
+          href="/"
+          class="m-2 bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800 items-center justify-center"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -42,6 +44,160 @@
             />
           </svg>
         </a>
+
+        <!--SignUP  and LOGIN  -->
+        {% if not request.user.is_authenticated %}
+        <!--SingUP link  -->
+
+        <a
+          class="m-2 bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800"
+          href="{% url 'signup' %}"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+            />
+          </svg>
+        </a>
+        <!-- LOgin LINK -->
+        <a
+          class="m-2 bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800"
+          href="{% url 'login' %}"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
+            />
+          </svg>
+        </a>
+        <!-- LOGIN end -->
+        <!-- MyAccount -->
+        {% elif request.user.is_authenticated %}
+        <!--  -->
+        {% if request.user.userprofile.is_vendor %}
+        <a
+          class="m-2 bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800 items-center justify-center"
+          href="{% url 'my_store' %}"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+            />
+          </svg>
+        </a>
+        <!--  -->
+        <!-- logout -->
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button
+            type="submit"
+            class="bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+              />
+            </svg>
+          </button>
+        </form>
+
+        <!-- NOT VENDOR -->
+        {% elif not request.user.userprofile.is_vendor %}
+        <!--  -->
+        <a
+          class="m-2 bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800"
+          href="{% url 'signup' %}"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z"
+            />
+          </svg>
+        </a>
+        <!-- My store -->
+        <!-- url 'vendor_detail' product.user.id -->
+        <a
+          href="{% url 'my_store' %}"
+          class="mr-2 bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800"
+        >
+          User
+        </a>
+        <!-- logout -->
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button
+            type="submit"
+            class="bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+              />
+            </svg>
+          </button>
+        </form>
+        <!--  -->
+
+        <!--  -->
+        {% endif %}
+
+        <!--  -->
+        {% endif %}
+        <!-- main container -->
       </div>
 
       <!-- Simple search -->
@@ -78,7 +234,7 @@
       </div>
 
       <!-- Create links for Menu or About, Myaccount and Vendors -->
-      <div class="menu flex-x-5 justify-between">
+      <div class="menu max-w-3xl flex-x-5 justify-between">
         {% menu %}
         <a
           href="{% url 'cart_view' %}"
@@ -86,26 +242,8 @@
         >
           Cart ({{cart|length}})</a
         >
-        <!-- Conditions -->
-        {% if request.user.is_authenticated %}
-        <a
-          href="{%url 'myaccount' %}"
-          class="m-2 bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800"
-        >
-          MyAccount
-        </a>
-        {% if request.user.userprofile.is_vendor %}
-        <a
-          href="{% url 'my_store' %}"
-          class="bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800"
-        >
-          User
-        </a>
-        {% endif %}
-
-        <!-- for users vendors link -->
-
-        {% endif %}
+        <!-- Conditions USER ACCOUNT OR NOT -->
+        <!-- class="m-2 bg-blue-600 py-2 px-4 text-white rounded-xl hover:bg-blue-800" -->
       </div>
       <!-- navbar end -->
     </nav>

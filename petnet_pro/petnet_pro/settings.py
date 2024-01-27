@@ -36,7 +36,7 @@ SESSION_COOKIE_AGE = 86400 # 1 day in seconds
 # url for login page
 LOGIN_URL = 'login'
 #url for redirecting after LogIN
-LOGIN_REDIRECT_URL = 'myaccount'
+LOGIN_REDIRECT_URL = 'my_store'
 #url for redirecting after LogOUT
 LOGOUT_REDIRECT_URL = 'frontpage'
 

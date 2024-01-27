@@ -10,9 +10,9 @@ class Userprofile(models.Model):
     is_vendor = models.BooleanField(default = False)
     
 
-    #user realted to 'userprofile app'
+    #user relted to 'userprofile app'
     # on_delete = models.CASCADE is If we delete the user all data will be deleted too
 
-#---string representation of User
-    def ___str__(self):
+#--- string representation of User ----
+    def __str__(self):
         return self.user.username

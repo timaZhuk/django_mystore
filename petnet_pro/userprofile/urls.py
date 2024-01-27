@@ -15,6 +15,6 @@ urlpatterns=[
     path('my-store/delete-product/<int:pk>/',views.delete_product,name='delete_product'),
     #-----------------------------------------------------
     path('myaccount/',views.myaccout,name="myaccount"),
-    path('vendors/<int:pk>',views.vendor_detail,name='vendor_detail'),
-
+    path('vendors/<int:pk>/',views.vendor_detail,name='vendor_detail'),
+    path('users/<int:pk>/',views.user_deatil, name='user_detail')
 ]

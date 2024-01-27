@@ -1,23 +1,22 @@
 <!-- frontpage inheriet all styles from base.html -->
 {% extends 'core/base.html' %}
-{% block title %}
-FrontPage
-{% endblock %}
-
+<!--  -->
+{% block title %} FrontPage {% endblock %}
+<!--  -->
 <!-- Code -->
 
 {% block content %}
-<h1 class="text-3xl font-bold underline">
-    Frontpage of my store
-  </h1>
-  <div>
-    <!--  -->
-  </div>
-  <!-- list all items (products) -->
-  {% include 'store/partials/products.html' %}
-
+<!-- <h1 class="text-3xl font-bold underline">Frontpage of my store</h1>
+<div>  -->
+  <!--  -->
+</div>
+<!-- list all items (products) -->
+{% include 'store/partials/products.html' %}
+<!--  -->
 {%endblock%}
+<!-- end of documant -->
 
+<!-- OLD CODE -->
 <!-- <div class="flex flex-wrap">
 
   {% for product in products %}

@@ -66,7 +66,7 @@ class Product(models.Model):
 
                 return self.thumbnails.url
             else:
-                return 'https://via.placeholder.com/240x240x.jpg'
+                return 'http://via.placeholder.com/240x240'
 
 
     
@@ -104,6 +104,7 @@ class Order(models.Model):
 class OrderItems(models.Model):
     order = models.ForeignKey(Order, related_name='items',on_delete=models.CASCADE)
     product = models.ForeignKey(Product, related_name='items',on_delete=models.CASCADE)
+    #user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
     price = models.IntegerField()
     quantity = models.IntegerField(default=1)
 
